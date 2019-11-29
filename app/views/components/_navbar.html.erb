@@ -1,0 +1,14 @@
+
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+
+  <%= link_to "<i class='fas fa-cocktail'></i>".html_safe, cocktails_path,
+  class: "navbar-brand" %>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Create cocktail', new_cocktail_path, class: "btn btn-primary" %>
+      </li>
+    </ul>
+  </div>
+</div>
