@@ -1,1 +1,17 @@
 // Specific CSS for your home-page
+
+body {
+  background-color: black;
+}
+
+.list {
+  width: 1000px;
+  margin: 30px auto;
+  background-color: black;
+  text-align: center;
+  h1 {
+    font-family: 'Monoton', cursive;
+    color: $lime-green;
+  }
+}
+

@@ -26,7 +26,7 @@ results = JSON.parse(open(url).read)
 cocktails = results['drinks'].first(10)
 
 cocktails.each do |cocktail|
-  Cocktail.create(name: cocktail['strIngredient1'])
+  Cocktail.create(name: cocktail['strIngredient1'], remote_photo_url: 'https://res.cloudinary.com/smruthi/image/upload/v1575027391/lwoc0ksnlirurcsgvjnz.jpg')
 end
 
 p "#{Cocktail.count} records added to cocktails"

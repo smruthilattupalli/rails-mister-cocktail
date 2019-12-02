@@ -1,26 +1,47 @@
-<h1><%= @cocktail.name %></h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo %>');">
+  <div class="container">
+    <h1><%= @cocktail.name %></h1>
+  </div>
+</div>
 
-<h3>Doses:</h3>
+<div class="d-flex justify-content-around my-5">
+  <div class="dose-list">
+    <h4>Ingredient List:</h4>
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+        <li>
+          <p><strong><%= dose.ingredient.name %></strong> - <%= dose.description %>
+          <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, dose_path(dose), method: :delete,
+              data: { confirm: "Are you sure?" }%>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="dose-form">
+    <%= render '/doses/new', dose: @dose, cocktail: @cocktail %>
+  </div>
+</div>
 
-<ul>
-<% @cocktail.doses.each do |dose| %>
-  <li>
-    <%= dose.ingredient.name %> -- <%= dose.description %>
-    <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, dose_path(dose), method: :delete,
-        data: { confirm: "Are you sure?" }%>
-  </li>
-<% end %>
-</ul>
-<br>
-<h3>Reviews:</h3>
+<div class="d-flex justify-content-around mt-20">
+  <div class="review-list">
+    <h4>Reviews:</h4>
+    <ul>
+    <% @cocktail.reviews.each do |review| %>
+      <li>
+        <p>
+          <% (review.rating).times do %>
+          <i class='fas fa-star'></i>
+          <% end %>
+          - <%= review.content %>
+        </p>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="review-form">
+    <%= render '/reviews/new', review: @review, cocktail: @cocktail %>
+  </div>
+</div>
 
-<ul>
-<% @cocktail.reviews.each do |review| %>
-  <li>
-    <%= review.content %> -- <%= review.rating %>
-  </li>
-<% end %>
-</ul>
 
-<%= render '/doses/new', dose: @dose, cocktail: @cocktail %>
-<%= render '/reviews/new', review: @review, cocktail: @cocktail %>
